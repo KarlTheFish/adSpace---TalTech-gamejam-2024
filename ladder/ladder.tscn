@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl1fu7yb6ncbm"]
+
+[ext_resource type="Script" path="res://ladder/ladder.gd" id="1_4x6lo"]
+
+[node name="Ladder" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_4x6lo")
+texture_file = "res://ladder/ladder-temp.png"
+ladder_length = 5

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgr8spaym6bx0"]
+
+[ext_resource type="PackedScene" uid="uid://d0xoyhtribf5b" path="res://player/player.tscn" id="1_jw1bx"]
+[ext_resource type="PackedScene" uid="uid://cl1fu7yb6ncbm" path="res://ladder/ladder.tscn" id="2_r0fx8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opac0"]
+size = Vector2(640, 20)
+
+[node name="TestScene" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(321, 465)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_opac0")
+
+[node name="Player" parent="." instance=ExtResource("1_jw1bx")]
+position = Vector2(95, 82)
+
+[node name="Ladder" parent="." instance=ExtResource("2_r0fx8")]
+position = Vector2(339, 375)
