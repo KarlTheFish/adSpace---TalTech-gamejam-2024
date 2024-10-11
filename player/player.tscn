@@ -9,7 +9,9 @@ size = Vector2(32, 32)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_s2hpp")
-x_speed = 150.0
+x_speed = 160.0
+gravity = 40.0
+climb_speed = -120.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7vvbd")
