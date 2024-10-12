@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://smrrlujb7suh"]
 
-[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_ghvmu"]
-[ext_resource type="Texture2D" uid="uid://b5jl8p5pphrfy" path="res://assets/Ad boxes/Ad1base.png" id="2_tmhqv"]
-[ext_resource type="Script" path="res://classes/draggable_button.gd" id="3_ox1bp"]
-[ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/close-button-01.png" id="4_d3sav"]
-[ext_resource type="Texture2D" uid="uid://bpmrym5dsy6r1" path="res://ads/accept-button-01.png" id="5_etknq"]
-[ext_resource type="Script" path="res://ads/ok_button_01.gd" id="6_ncwwm"]
+[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_6cfan"]
+[ext_resource type="Texture2D" uid="uid://b5jl8p5pphrfy" path="res://assets/Ad boxes/Ad1base.png" id="2_wgsdo"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="3_e1yco"]
+[ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/close-button-01.png" id="4_l6cwq"]
+[ext_resource type="Texture2D" uid="uid://bpmrym5dsy6r1" path="res://ads/accept-button-01.png" id="5_hwihh"]
+[ext_resource type="Script" path="res://ads/ok_button_01.gd" id="6_tx2kh"]
 
 [node name="EmptyAd02" type="Node2D" node_paths=PackedStringArray("close_button", "ok_button", "close_button_markers")]
-script = ExtResource("1_ghvmu")
+script = ExtResource("1_6cfan")
 close_button = NodePath("Window/CloseButton")
 ok_button = NodePath("Window/OkButton")
 close_button_markers = [NodePath("Window/CloseRight"), NodePath("Window/CloseLeft")]
@@ -18,8 +18,11 @@ offset_left = -1.0
 offset_top = -4.0
 offset_right = 106.0
 offset_bottom = 169.0
-texture_normal = ExtResource("2_tmhqv")
-script = ExtResource("3_ox1bp")
+script = ExtResource("3_e1yco")
+
+[node name="Sprite2D" type="Sprite2D" parent="Window"]
+position = Vector2(50, 84)
+texture = ExtResource("2_wgsdo")
 
 [node name="CloseButton" type="TextureButton" parent="Window"]
 self_modulate = Color(1, 1, 1, 0.545098)
@@ -29,7 +32,7 @@ offset_top = 154.0
 offset_right = 97.0
 offset_bottom = 166.0
 scale = Vector2(1.04, 1.0581)
-texture_normal = ExtResource("4_d3sav")
+texture_normal = ExtResource("4_l6cwq")
 
 [node name="OkButton" type="TextureButton" parent="Window" node_paths=PackedStringArray("ad_flash_timer")]
 layout_mode = 0
@@ -38,8 +41,8 @@ offset_top = 154.0
 offset_right = 47.0
 offset_bottom = 166.0
 scale = Vector2(1.04, 1.0581)
-texture_normal = ExtResource("5_etknq")
-script = ExtResource("6_ncwwm")
+texture_normal = ExtResource("5_hwihh")
+script = ExtResource("6_tx2kh")
 ad_flash_timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Window/OkButton"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://ds5376rf6qpva"]
+
+[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_5e82t"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="2_r6okp"]
+[ext_resource type="Texture2D" uid="uid://b5jl8p5pphrfy" path="res://assets/Ad boxes/Ad1base.png" id="3_r61fl"]
+[ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/close-button-01.png" id="4_nfusv"]
+[ext_resource type="Texture2D" uid="uid://bpmrym5dsy6r1" path="res://ads/accept-button-01.png" id="5_qct6u"]
+[ext_resource type="Script" path="res://ads/ok_button_01.gd" id="6_sjkyn"]
+[ext_resource type="Texture2D" uid="uid://dp4o2i5uhi4v8" path="res://ads/ad-graphics/ad-premium-1.png" id="7_47l04"]
+
+[node name="EmptyAd02" type="Node2D" node_paths=PackedStringArray("close_button", "ok_button", "close_button_markers")]
+script = ExtResource("1_5e82t")
+close_button = NodePath("Window/CloseButton")
+ok_button = NodePath("Window/OkButton")
+close_button_markers = [NodePath("Window/CloseRight"), NodePath("Window/CloseLeft")]
+
+[node name="Window" type="TextureButton" parent="."]
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 124.0
+offset_bottom = 146.0
+script = ExtResource("2_r6okp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Window"]
+modulate = Color(0.984314, 0.784314, 0, 1)
+position = Vector2(62, 74.5)
+scale = Vector2(1.20388, 0.886905)
+texture = ExtResource("3_r61fl")
+
+[node name="CloseButton" type="TextureButton" parent="Window"]
+self_modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 0
+offset_left = 74.0
+offset_top = 133.0
+offset_right = 120.0
+offset_bottom = 145.0
+scale = Vector2(1.04, 1.0581)
+texture_normal = ExtResource("4_nfusv")
+
+[node name="OkButton" type="TextureButton" parent="Window" node_paths=PackedStringArray("ad_flash_timer")]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 133.0
+offset_right = 49.0
+offset_bottom = 145.0
+scale = Vector2(1.04, 1.0581)
+texture_normal = ExtResource("5_qct6u")
+script = ExtResource("6_sjkyn")
+ad_flash_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Window/OkButton"]
+autostart = true
+
+[node name="CloseRight" type="Marker2D" parent="Window"]
+position = Vector2(74, 133)
+
+[node name="CloseLeft" type="Marker2D" parent="Window"]
+position = Vector2(3, 133)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(61, 63)
+texture = ExtResource("7_47l04")

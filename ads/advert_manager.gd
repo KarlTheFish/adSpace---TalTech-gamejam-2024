@@ -8,8 +8,25 @@ extends Node2D
 
 const ADVERT_LIMIT: int = 9
 const ADVERT_SCENES: Array[PackedScene] = [
-	preload("res://ads/empty_ad_01.tscn"),
-	preload("res://ads/empty_ad_02.tscn")
+	#preload("res://ads/ads/empty_ad_01.tscn"),
+	#preload("res://ads/ads/empty_ad_02.tscn")
+	preload("res://ads/ads/casino_ad_01.tscn"),
+	preload("res://ads/ads/casino_ad_02.tscn"),
+	preload("res://ads/ads/earth_ad_01.tscn"),
+	preload("res://ads/ads/earth_ad_02.tscn"),
+	preload("res://ads/ads/fast_internet_ad_01.tscn"),
+	preload("res://ads/ads/fast_internet_ad_02.tscn"),
+	preload("res://ads/ads/foreign_ad_01.tscn"),
+	preload("res://ads/ads/premium_ad_01.tscn"),
+	preload("res://ads/ads/premium_ad_02.tscn"),
+	preload("res://ads/ads/premium_ad_03.tscn"),
+	preload("res://ads/ads/premium_ad_04.tscn"),
+	preload("res://ads/ads/premium_ad_05.tscn"),
+	preload("res://ads/ads/premium_ad_06.tscn"),
+	preload("res://ads/ads/rocket_ad_01.tscn"),
+	preload("res://ads/ads/rocket_ad_02.tscn"),
+	preload("res://ads/ads/therapy_ad_01.tscn"),
+	preload("res://ads/ads/therapy_ad_02.tscn")
 ]
 
 var advert_amount: int = 0
