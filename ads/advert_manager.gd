@@ -1,7 +1,7 @@
 extends Node2D
 
 ## Interval between possible new ads.
-@export_range(2.0, 20.0, 1.0) var time_between_ads: float = 10.0
+@export_range(2.0, 20.0, 1.0) var time_between_ads: float = 3.0
 ## Percent chance for ads to appear when timer times out.
 @export_range(0.0, 1.0, 0.1) var advert_spawn_chance: float = 0.5
 @export var ad_check_timer: Timer
