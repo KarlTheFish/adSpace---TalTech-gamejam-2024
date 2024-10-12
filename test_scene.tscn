@@ -31,3 +31,5 @@ position = Vector2(160, 120)
 zoom = Vector2(2, 2)
 
 [node name="AdvertManager" parent="." instance=ExtResource("6_5qjq5")]
+time_between_ads = 2.0
+advert_spawn_chance = 0.9
