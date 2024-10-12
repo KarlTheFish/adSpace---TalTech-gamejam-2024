@@ -9,6 +9,7 @@ extends Node2D
 const ADVERT_LIMIT: int = 9
 const ADVERT_SCENES: Array[PackedScene] = [
 	preload("res://ads/empty_ad_01.tscn"),
+	preload("res://ads/empty_ad_02.tscn"),
 	preload("res://ads/earth-ad/earth_advertisement.tscn"),
 ]
 
