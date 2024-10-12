@@ -10,7 +10,6 @@ const ADVERT_LIMIT: int = 9
 const ADVERT_SCENES: Array[PackedScene] = [
 	preload("res://ads/empty_ad_01.tscn"),
 	preload("res://ads/empty_ad_02.tscn")
-	#,preload("res://ads/earth-ad/earth_advertisement.tscn"),
 ]
 
 var advert_amount: int = 0
@@ -42,3 +41,8 @@ func _timer_done():
 		add_child(advert_instance)
 		
 		advert_amount = advert_amount + 1
+		
+		advert_instance.tree_exiting.connect(adClosed)
+		
+func adClosed():
+	advert_amount = advert_amount - 1
