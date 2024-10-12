@@ -20,8 +20,20 @@ func _ready() -> void:
 func _timer_done() -> void:
 	if (asteroids_to_destroy > 0):
 		spawn_timer.start()
-		var asteroid:= ASTEROIDS.pick_random().instantiate() as Area2D
-		
+		var asteroid:= ASTEROIDS.pick_random().instantiate() as Asteroid
+		asteroid.position = Vector2(
+			randi_range(0, 1) * 320,
+			randi_range(0, 80)
+		)
+		asteroid.destroyed.connect(_asteroid_destroyed)
+		task_root.add_child(asteroid)
+
+func _asteroid_destroyed() -> void:
+	asteroids_to_destroy -= 1
+	if (asteroids_to_destroy == 0):
+		task_complete = true
+		EventBus.task_completed.emit()
+		toggle_task_visibility()
 
 func restart_task() -> void:
 	asteroids_to_destroy = randi_range(10, 15)
