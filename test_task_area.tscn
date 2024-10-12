@@ -16,6 +16,7 @@ canvas_layer = NodePath("CanvasLayer")
 shape = SubResource("CircleShape2D_2phtk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Icon" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(256, 184)

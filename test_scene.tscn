@@ -1,36 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgr8spaym6bx0"]
+[gd_scene load_steps=7 format=3 uid="uid://dgr8spaym6bx0"]
 
 [ext_resource type="PackedScene" uid="uid://d0xoyhtribf5b" path="res://player/player.tscn" id="1_jw1bx"]
+[ext_resource type="Texture2D" uid="uid://bro0ikql6txj8" path="res://assets/starry sky.png" id="1_y8by2"]
+[ext_resource type="PackedScene" uid="uid://bc6tjmcux2r5g" path="res://ship/ship.tscn" id="2_fq5u1"]
 [ext_resource type="PackedScene" uid="uid://cl1fu7yb6ncbm" path="res://ladder/ladder.tscn" id="2_r0fx8"]
 [ext_resource type="PackedScene" uid="uid://ykpog8hlre26" path="res://test_task_area.tscn" id="3_3hty3"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_opac0"]
-size = Vector2(640, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsyjb"]
-size = Vector2(256, 32)
+[ext_resource type="PackedScene" uid="uid://b6w112kvby67n" path="res://ads/advert_manager.tscn" id="6_5qjq5"]
 
 [node name="TestScene" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(320, 464)
-collision_mask = 0
+[node name="StarrySky" type="Sprite2D" parent="."]
+position = Vector2(184, 216)
+texture = ExtResource("1_y8by2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_opac0")
+[node name="Ship" parent="." instance=ExtResource("2_fq5u1")]
+position = Vector2(160, 112)
 
 [node name="Player" parent="." instance=ExtResource("1_jw1bx")]
-position = Vector2(144, 384)
+position = Vector2(264, 160)
 
 [node name="Ladder" parent="." instance=ExtResource("2_r0fx8")]
 position = Vector2(328, 368)
 ladder_length = 5
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(472, 304)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("RectangleShape2D_vsyjb")
-
 [node name="TaskArea" parent="." instance=ExtResource("3_3hty3")]
-position = Vector2(456, 272)
+position = Vector2(48, 160)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 120)
+zoom = Vector2(2, 2)
+
+[node name="AdvertManager" parent="." instance=ExtResource("6_5qjq5")]

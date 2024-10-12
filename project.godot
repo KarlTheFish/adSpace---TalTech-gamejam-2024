@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Taltech Jam Game"
-run/main_scene="res://Ads/AdThing.tscn"
+run/main_scene="res://ads/advert_manager.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
