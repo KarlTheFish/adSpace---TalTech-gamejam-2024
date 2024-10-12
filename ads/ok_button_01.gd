@@ -4,6 +4,7 @@ var isFlashing:bool = true
 @export var ad_flash_timer:Timer
 
 var flashOn:bool
+signal okButtonPressed()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,3 +21,6 @@ func _timer_done():
 		set_self_modulate("73ff00")
 	else:
 		set_self_modulate("ffffff")
+
+func _pressed() -> void:
+	emit_signal("okButtonPressed")
