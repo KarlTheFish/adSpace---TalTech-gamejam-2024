@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6li0qig6u7r0"
-path="res://.godot/imported/ad-earth-visit.png-1599e20a8eeeb11f501961124c381245.ctex"
+uid="uid://c0hs5tq5c631j"
+path="res://.godot/imported/ad-casino.png-501ca6bbc9edd44dba0035b957c75605.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ads/earth-ad/ad-earth-visit.png"
-dest_files=["res://.godot/imported/ad-earth-visit.png-1599e20a8eeeb11f501961124c381245.ctex"]
+source_file="res://ads/ad-graphics/ad-casino.png"
+dest_files=["res://.godot/imported/ad-casino.png-501ca6bbc9edd44dba0035b957c75605.ctex"]
 
 [params]
 

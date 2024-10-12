@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsbxxqloda2tp"]
+
+[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_5dvnb"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="2_sia2x"]
+[ext_resource type="Texture2D" uid="uid://b5jl8p5pphrfy" path="res://assets/Ad boxes/Ad1base.png" id="3_3cu6j"]
+[ext_resource type="Texture2D" uid="uid://h1ljb60myshd" path="res://ads/ad-graphics/ad-foreign.png" id="3_i4wmj"]
+[ext_resource type="Texture2D" uid="uid://bj2kveip2424x" path="res://ads/close-button-12.png" id="4_xclpm"]
+
+[node name="EmptyAd01" type="Node2D" node_paths=PackedStringArray("close_button", "close_button_markers")]
+script = ExtResource("1_5dvnb")
+close_button = NodePath("Window/CloseButton")
+close_button_markers = [NodePath("Window/CloseUpperRight"), NodePath("Window/CloseUpperLeft")]
+
+[node name="Window" type="TextureButton" parent="."]
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 202.0
+offset_bottom = 72.0
+script = ExtResource("2_sia2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Window"]
+position = Vector2(75, 36)
+scale = Vector2(1, 0.261905)
+texture = ExtResource("3_3cu6j")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Window"]
+position = Vector2(101, 38)
+texture = ExtResource("3_i4wmj")
+
+[node name="CloseButton" type="TextureButton" parent="Window"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 66.0
+offset_right = 204.0
+offset_bottom = 78.0
+texture_normal = ExtResource("4_xclpm")
+
+[node name="CloseUpperRight" type="Marker2D" parent="Window"]
+position = Vector2(192, 64)
+
+[node name="CloseUpperLeft" type="Marker2D" parent="Window"]
+position = Vector2(2, 1)

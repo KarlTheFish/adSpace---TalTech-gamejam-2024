@@ -8,9 +8,25 @@ extends Node2D
 
 const ADVERT_LIMIT: int = 9
 const ADVERT_SCENES: Array[PackedScene] = [
-	preload("res://ads/empty_ad_01.tscn"),
-	preload("res://ads/empty_ad_02.tscn")
-	#,preload("res://ads/earth-ad/earth_advertisement.tscn"),
+	#preload("res://ads/ads/empty_ad_01.tscn"),
+	#preload("res://ads/ads/empty_ad_02.tscn")
+	preload("res://ads/ads/casino_ad_01.tscn"),
+	preload("res://ads/ads/casino_ad_02.tscn"),
+	preload("res://ads/ads/earth_ad_01.tscn"),
+	preload("res://ads/ads/earth_ad_02.tscn"),
+	preload("res://ads/ads/fast_internet_ad_01.tscn"),
+	preload("res://ads/ads/fast_internet_ad_02.tscn"),
+	preload("res://ads/ads/foreign_ad_01.tscn"),
+	preload("res://ads/ads/premium_ad_01.tscn"),
+	preload("res://ads/ads/premium_ad_02.tscn"),
+	preload("res://ads/ads/premium_ad_03.tscn"),
+	preload("res://ads/ads/premium_ad_04.tscn"),
+	preload("res://ads/ads/premium_ad_05.tscn"),
+	preload("res://ads/ads/premium_ad_06.tscn"),
+	preload("res://ads/ads/rocket_ad_01.tscn"),
+	preload("res://ads/ads/rocket_ad_02.tscn"),
+	preload("res://ads/ads/therapy_ad_01.tscn"),
+	preload("res://ads/ads/therapy_ad_02.tscn")
 ]
 
 var advert_amount: int = 0
@@ -25,20 +41,32 @@ func _process(delta: float) -> void:
 	else:
 		ad_check_timer.set_paused(false)
 		
-	print(advert_amount)
+	#print(advert_amount)
 	
 func _timer_done():
 	var f = randf()
 	
 	if(f <= advert_spawn_chance):
-		var random_advert = ADVERT_SCENES.pick_random()
-		var advert_instance: BaseAdvertisement = random_advert.instantiate()
+		adOpen()
+
 		
-		# TODO: visibilitynotifier to detect whether it's in viewport bounds
-		var rand_x = randi_range(0, 600)
-		var rand_y = randi_range(0, 300)
+func adClosed():
+	advert_amount = advert_amount - 1
+	
+func adOpen():
+	var random_advert = ADVERT_SCENES.pick_random()
+	var advert_instance: BaseAdvertisement = random_advert.instantiate()
+
+	# TODO: visibilitynotifier to detect whether it's in viewport bounds
+	var rand_x = randi_range(0, 600)
+	var rand_y = randi_range(0, 300)
+
+	advert_instance.set_position(Vector2(rand_x, rand_y))
+	add_child(advert_instance)
+
+	advert_amount = advert_amount + 1
+	
+	if(random_advert == ADVERT_SCENES[1]):
+		advert_instance.ok_button.pressed.connect(adOpen)
 		
-		advert_instance.set_position(Vector2(rand_x, rand_y))
-		add_child(advert_instance)
-		
-		advert_amount = advert_amount + 1
+	advert_instance.tree_exiting.connect(adClosed)
