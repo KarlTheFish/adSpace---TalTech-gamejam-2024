@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1cvyb7ewrmt2"]
+
+[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_qr26u"]
+[ext_resource type="Texture2D" uid="uid://caxj3o4e0kbgu" path="res://ads/sprites/ads/ad-rocket.png" id="2_6hf6x"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="3_hgpho"]
+[ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/sprites/close-button-01.png" id="4_lao2a"]
+[ext_resource type="PackedScene" uid="uid://c6qxbov6xpppp" path="res://ads/ok_button.tscn" id="5_74ce4"]
+
+[node name="RocketAd" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button", "ok_button")]
+script = ExtResource("1_qr26u")
+ad_window = NodePath("Window")
+close_button = NodePath("Window/CloseButton")
+ok_button = NodePath("Window/OkButton")
+
+[node name="Window" type="TextureButton" parent="."]
+offset_right = 100.0
+offset_bottom = 100.0
+texture_normal = ExtResource("2_6hf6x")
+script = ExtResource("3_hgpho")
+
+[node name="CloseButton" type="TextureButton" parent="Window"]
+self_modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 94.0
+offset_right = 118.0
+offset_bottom = 106.0
+scale = Vector2(1.04, 1.0581)
+texture_normal = ExtResource("4_lao2a")
+
+[node name="OkButton" parent="Window" instance=ExtResource("5_74ce4")]

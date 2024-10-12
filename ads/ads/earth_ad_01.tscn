@@ -1,41 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxf34cw8i5kji"]
+[gd_scene load_steps=5 format=3 uid="uid://bxf34cw8i5kji"]
 
 [ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_drimp"]
 [ext_resource type="Script" path="res://classes/draggable_button.gd" id="2_4rk7a"]
-[ext_resource type="Texture2D" uid="uid://b5jl8p5pphrfy" path="res://assets/Ad boxes/Ad1base.png" id="3_5fubk"]
-[ext_resource type="Texture2D" uid="uid://bj2kveip2424x" path="res://ads/close-button-12.png" id="4_3csyg"]
-[ext_resource type="Texture2D" uid="uid://dgg17tfw8n34t" path="res://ads/ad-graphics/ad-earth-visit.png" id="4_pxtef"]
+[ext_resource type="Texture2D" uid="uid://dgg17tfw8n34t" path="res://ads/sprites/ads/ad-earth-visit.png" id="4_pxtef"]
+[ext_resource type="Texture2D" uid="uid://b4ldgvdiw6civ" path="res://ads/sprites/close-button-24.png" id="4_y2cxi"]
 
-[node name="EmptyAd01" type="Node2D" node_paths=PackedStringArray("close_button", "close_button_markers")]
+[node name="EarthAd1" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button")]
 script = ExtResource("1_drimp")
+ad_window = NodePath("Window")
 close_button = NodePath("Window/CloseButton")
-close_button_markers = [NodePath("Window/CloseUpperRight"), NodePath("Window/CloseUpperLeft")]
 
 [node name="Window" type="TextureButton" parent="."]
-offset_left = -1.0
-offset_top = -4.0
-offset_right = 106.0
-offset_bottom = 169.0
+offset_right = 150.0
+offset_bottom = 200.0
+texture_normal = ExtResource("4_pxtef")
 script = ExtResource("2_4rk7a")
-
-[node name="Sprite2D" type="Sprite2D" parent="Window"]
-position = Vector2(52, 84)
-texture = ExtResource("3_5fubk")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Window"]
-position = Vector2(52.5, 86.5)
-scale = Vector2(0.673333, 0.815)
-texture = ExtResource("4_pxtef")
 
 [node name="CloseButton" type="TextureButton" parent="Window"]
 layout_mode = 0
-offset_left = 96.0
-offset_right = 108.0
-offset_bottom = 12.0
-texture_normal = ExtResource("4_3csyg")
-
-[node name="CloseUpperRight" type="Marker2D" parent="Window"]
-position = Vector2(96, -2)
-
-[node name="CloseUpperLeft" type="Marker2D" parent="Window"]
-position = Vector2(-2, -2)
+offset_left = 142.0
+offset_top = -2.0
+offset_right = 166.0
+offset_bottom = 6.0
+texture_normal = ExtResource("4_y2cxi")

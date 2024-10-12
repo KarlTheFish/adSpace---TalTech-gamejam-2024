@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4rpxrs608ckk"]
+
+[ext_resource type="Script" path="res://tasks/control-room/bullet.gd" id="1_k8kt2"]
+[ext_resource type="Texture2D" uid="uid://corskof2o8ths" path="res://tasks/control-room/sprites/bullet.png" id="2_8wuim"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbqbt"]
+size = Vector2(4, 5)
+
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("notifier")]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_k8kt2")
+notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kbqbt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8wuim")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.2, 0.3)

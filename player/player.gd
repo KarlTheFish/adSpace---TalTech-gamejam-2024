@@ -4,6 +4,9 @@ class_name Player extends CharacterBody2D
 @export_range(10, 300, 10) var gravity: float = 50
 @export_range(-300, -50, 10) var climb_speed: float = -50
 
+@export var sprite: Sprite2D
+@export var animation_player: AnimationPlayer
+
 var direction: float = 0.0
 var can_climb: bool = false
 var can_move: bool = true
@@ -26,6 +29,11 @@ func _physics_process(delta: float) -> void:
 
 func x_input() -> void:
 	direction = Input.get_axis("movement_left", "movement_right")
+	if (is_zero_approx(direction)):
+		animation_player.play("idle")
+	else:
+		sprite.flip_h = (direction > 0)
+		animation_player.play("walk")
 
 func apply_velocity() -> void:
 	velocity.x = direction * x_speed

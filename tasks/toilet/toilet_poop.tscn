@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3qgklisod5jm"]
+
+[ext_resource type="Script" path="res://tasks/toilet/toilet_poop.gd" id="1_b0hmu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvils"]
+
+[sub_resource type="Gradient" id="Gradient_xyl1a"]
+colors = PackedColorArray(0.5, 0.5, 0.5, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_64vrs"]
+gradient = SubResource("Gradient_xyl1a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uxx7i"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 200, 0)
+scale_min = 2.0
+scale_max = 5.0
+color = Color(0.0862745, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_64vrs")
+
+[node name="ToiletPoop" type="Area2D" node_paths=PackedStringArray("sprite", "collision_shape", "particles")]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_b0hmu")
+sprite = NodePath("Sprite2D")
+collision_shape = NodePath("CollisionShape2D")
+particles = NodePath("GPUParticles2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yvils")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_uxx7i")
+lifetime = 0.6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

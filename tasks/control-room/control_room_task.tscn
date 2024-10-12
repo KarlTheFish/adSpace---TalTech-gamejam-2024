@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cydilo6c42vos"]
+
+[ext_resource type="Script" path="res://tasks/control-room/control_room_task.gd" id="1_kg171"]
+[ext_resource type="Texture2D" uid="uid://3eevpndjdjke" path="res://tasks/control-room/sprites/background.png" id="2_8emy6"]
+[ext_resource type="Texture2D" uid="uid://wagojf4n7j4p" path="res://tasks/control-room/sprites/control-panel.png" id="3_fs6sd"]
+[ext_resource type="Texture2D" uid="uid://dkbcfvttdr40h" path="res://tasks/control-room/sprites/gun-sheet.png" id="3_kqs3b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvm4c"]
+radius = 16.0
+
+[node name="ControlRoomTask" type="Area2D" node_paths=PackedStringArray("gun_sprite", "task_root")]
+script = ExtResource("1_kg171")
+gun_sprite = NodePath("TaskRoot/ControlPanel/Gun")
+task_root = NodePath("TaskRoot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pvm4c")
+
+[node name="TaskRoot" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="TaskRoot"]
+texture = ExtResource("2_8emy6")
+centered = false
+
+[node name="ControlPanel" type="Sprite2D" parent="TaskRoot"]
+z_index = 2
+position = Vector2(160, 189)
+texture = ExtResource("3_fs6sd")
+
+[node name="Gun" type="Sprite2D" parent="TaskRoot/ControlPanel"]
+z_index = -1
+position = Vector2(0, -60)
+texture = ExtResource("3_kqs3b")
+hframes = 5
+frame = 1
+
+[node name="SpawnTimer" type="Timer" parent="TaskRoot"]
+one_shot = true

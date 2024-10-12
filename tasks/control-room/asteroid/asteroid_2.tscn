@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://riy40yv4g8i3"]
+
+[ext_resource type="Script" path="res://tasks/control-room/asteroid/asteroid.gd" id="1_ok1kv"]
+[ext_resource type="Texture2D" uid="uid://odg23s25ts35" path="res://tasks/control-room/sprites/asteroid-2.png" id="2_se2gv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgqjv"]
+radius = 30.2283
+height = 72.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u6iem"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+damping_min = 150.0
+damping_max = 250.0
+scale_min = 2.0
+scale_max = 6.0
+color = Color(1, 0.333333, 0.741176, 1)
+
+[node name="Asteroid2" type="Area2D" node_paths=PackedStringArray("sprite", "particles", "destruction_timer")]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_ok1kv")
+sprite = NodePath("Sprite2D")
+particles = NodePath("GPUParticles2D")
+destruction_timer = NodePath("DestructionTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_se2gv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 1)
+rotation = 0.872665
+shape = SubResource("CapsuleShape2D_hgqjv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_u6iem")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="DestructionTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

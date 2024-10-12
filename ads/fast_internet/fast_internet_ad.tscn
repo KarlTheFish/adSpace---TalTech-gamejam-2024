@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjendycngnkcv"]
+
+[ext_resource type="Script" path="res://ads/fast_internet/fast_internet_ad.gd" id="1_55n63"]
+[ext_resource type="Shader" path="res://ads/fast_internet/fast_internet_ad.gdshader" id="2_haimu"]
+[ext_resource type="Texture2D" uid="uid://dgei6plrcigc6" path="res://ads/sprites/ads/ad-fast-internet.png" id="3_1kdnm"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="4_6usk7"]
+[ext_resource type="Texture2D" uid="uid://bj2kveip2424x" path="res://ads/sprites/close-button-12.png" id="5_30qjx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tduec"]
+shader = ExtResource("2_haimu")
+shader_parameter/y_threshold = 0.2
+
+[node name="FastInternetAd" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button")]
+script = ExtResource("1_55n63")
+ad_window = NodePath("Window")
+close_button = NodePath("Window/CloseButton")
+
+[node name="Window" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_tduec")
+offset_right = 125.0
+offset_bottom = 100.0
+texture_normal = ExtResource("3_1kdnm")
+script = ExtResource("4_6usk7")
+
+[node name="CloseButton" type="TextureButton" parent="Window"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = -4.0
+offset_right = 130.0
+offset_bottom = 8.0
+texture_normal = ExtResource("5_30qjx")

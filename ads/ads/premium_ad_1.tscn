@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds5376rf6qpva"]
+
+[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_4xkon"]
+[ext_resource type="Texture2D" uid="uid://dp4o2i5uhi4v8" path="res://ads/sprites/ads/ad-premium-1.png" id="2_wps70"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="3_e00am"]
+[ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/sprites/close-button-01.png" id="4_b5fik"]
+[ext_resource type="PackedScene" uid="uid://c6qxbov6xpppp" path="res://ads/ok_button.tscn" id="5_q3l55"]
+
+[node name="PremiumAd1" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button", "ok_button")]
+script = ExtResource("1_4xkon")
+ad_window = NodePath("Window")
+close_button = NodePath("Window/CloseButton")
+ok_button = NodePath("Window/OkButton")
+
+[node name="Window" type="TextureButton" parent="."]
+offset_right = 125.0
+offset_bottom = 125.0
+texture_normal = ExtResource("2_wps70")
+script = ExtResource("3_e00am")
+
+[node name="CloseButton" type="TextureButton" parent="Window"]
+self_modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 0
+offset_left = 94.0
+offset_top = 119.0
+offset_right = 140.0
+offset_bottom = 131.0
+scale = Vector2(1.04, 1.0581)
+texture_normal = ExtResource("4_b5fik")
+
+[node name="OkButton" parent="Window" instance=ExtResource("5_q3l55")]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 119.0
+offset_right = 38.0
+offset_bottom = 129.0

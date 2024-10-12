@@ -8,65 +8,55 @@ extends Node2D
 
 const ADVERT_LIMIT: int = 9
 const ADVERT_SCENES: Array[PackedScene] = [
-	#preload("res://ads/ads/empty_ad_01.tscn"),
-	#preload("res://ads/ads/empty_ad_02.tscn")
 	preload("res://ads/ads/casino_ad_01.tscn"),
 	preload("res://ads/ads/casino_ad_02.tscn"),
 	preload("res://ads/ads/earth_ad_01.tscn"),
 	preload("res://ads/ads/earth_ad_02.tscn"),
-	preload("res://ads/ads/fast_internet_ad_01.tscn"),
-	preload("res://ads/ads/fast_internet_ad_02.tscn"),
-	preload("res://ads/ads/foreign_ad_01.tscn"),
-	preload("res://ads/ads/premium_ad_01.tscn"),
-	preload("res://ads/ads/premium_ad_02.tscn"),
-	preload("res://ads/ads/premium_ad_03.tscn"),
-	preload("res://ads/ads/premium_ad_04.tscn"),
-	preload("res://ads/ads/premium_ad_05.tscn"),
-	preload("res://ads/ads/premium_ad_06.tscn"),
-	preload("res://ads/ads/rocket_ad_01.tscn"),
-	preload("res://ads/ads/rocket_ad_02.tscn"),
-	preload("res://ads/ads/therapy_ad_01.tscn"),
-	preload("res://ads/ads/therapy_ad_02.tscn")
+	preload("res://ads/fast_internet/fast_internet_ad.tscn"),
+	preload("res://ads/ads/foreign_ad.tscn"),
+	preload("res://ads/ads/premium_ad_1.tscn"),
+	preload("res://ads/ads/premium_ad_2.tscn"),
+	preload("res://ads/ads/premium_ad_3.tscn"),
+	preload("res://ads/ads/rocket_ad.tscn"),
+	preload("res://ads/ads/therapy_ad.tscn"),
 ]
 
 var advert_amount: int = 0
 
 func _ready() -> void:
 	ad_check_timer.timeout.connect(_timer_done)
-	ad_check_timer.wait_time = time_between_ads
+	ad_check_timer.start(time_between_ads)
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	if(advert_amount > ADVERT_LIMIT):
 		ad_check_timer.set_paused(true)
 	else:
 		ad_check_timer.set_paused(false)
-		
-	#print(advert_amount)
 	
 func _timer_done():
+	print("roll")
 	var f = randf()
-	
 	if(f <= advert_spawn_chance):
-		adOpen()
+		print("spawn")
+		create_ad()
 
-		
-func adClosed():
-	advert_amount = advert_amount - 1
-	
-func adOpen():
+func ad_closed():
+	advert_amount -= 1
+
+func create_ad():
 	var random_advert = ADVERT_SCENES.pick_random()
 	var advert_instance: BaseAdvertisement = random_advert.instantiate()
 
 	# TODO: visibilitynotifier to detect whether it's in viewport bounds
-	var rand_x = randi_range(0, 600)
-	var rand_y = randi_range(0, 300)
+	var rand_x = randi_range(0, 245)
+	var rand_y = randi_range(0, 165)
 
 	advert_instance.set_position(Vector2(rand_x, rand_y))
 	add_child(advert_instance)
 
-	advert_amount = advert_amount + 1
+	advert_amount += 1
 	
-	if(random_advert == ADVERT_SCENES[1]):
-		advert_instance.ok_button.pressed.connect(adOpen)
-		
-	advert_instance.tree_exiting.connect(adClosed)
+	if (advert_instance.ok_button != null):
+		advert_instance.ok_button.pressed.connect(create_ad)
+
+	advert_instance.tree_exiting.connect(ad_closed)

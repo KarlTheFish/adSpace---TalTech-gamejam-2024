@@ -64,6 +64,8 @@ action={
 2d_physics/layer_1="map"
 2d_physics/layer_2="character"
 2d_physics/layer_3="ladder"
+2d_physics/layer_4="task_1"
+2d_physics/layer_5="task_2"
 
 [rendering]
 
