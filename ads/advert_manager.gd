@@ -34,10 +34,10 @@ func _process(delta: float) -> void:
 		ad_check_timer.set_paused(false)
 	
 func _timer_done():
-	print("roll")
+	#print("roll")
 	var f = randf()
 	if(f <= advert_spawn_chance):
-		print("spawn")
+	#	print("spawn")
 		create_ad()
 
 func ad_closed():
