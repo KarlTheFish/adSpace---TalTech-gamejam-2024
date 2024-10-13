@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" path="res://tasks/task_manager.gd" id="1_jrbxr"]
 
-[node name="TaskManager" type="Node2D" node_paths=PackedStringArray("audio", "task_timer")]
+[node name="TaskManager" type="Node2D" node_paths=PackedStringArray("audio", "task_timer", "urgent_timer")]
 script = ExtResource("1_jrbxr")
 audio = NodePath("GeneralTaskAudio")
 task_timer = NodePath("Timer")
+urgent_timer = NodePath("UrgentTimer")
 
 [node name="GeneralTaskAudio" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-246, -108)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 8.0
+
+[node name="UrgentTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

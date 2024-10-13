@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwostav5riyls"]
+[gd_scene load_steps=7 format=3 uid="uid://bwostav5riyls"]
 
 [ext_resource type="Texture2D" uid="uid://cwwp4hwna8teo" path="res://tasks/warning-sign/ohumark.png" id="2_jsl7l"]
 [ext_resource type="Script" path="res://tasks/warning-sign/warning_sign.gd" id="2_kb2hw"]
+[ext_resource type="AudioStream" uid="uid://dejba3mlulnyw" path="res://assets/audio/task_alarm.wav" id="3_yjad3"]
 
 [sub_resource type="Animation" id="Animation_cxjuc"]
 length = 0.001
@@ -66,12 +67,24 @@ _data = {
 "bob": SubResource("Animation_3dqag")
 }
 
-[node name="WarningSign" type="Sprite2D"]
+[node name="WarningSign" type="Sprite2D" node_paths=PackedStringArray("UrgentTimer", "FlashTimer", "UrgentAlarm")]
 texture = ExtResource("2_jsl7l")
 script = ExtResource("2_kb2hw")
+UrgentTimer = NodePath("UrgentTimer")
+FlashTimer = NodePath("FlashTimer")
+UrgentAlarm = NodePath("UrgentAlarm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_irqc1")
 }
 autoplay = "bob"
+
+[node name="UrgentTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="UrgentAlarm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yjad3")

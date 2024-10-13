@@ -4,6 +4,8 @@ extends Node2D
 @export var tasks: Array[TaskArea] = []
 @export var task_timer: Timer
 
+@export var urgent_timer: Timer
+
 @export_range(0.0, 1.0, 0.1) var task_start_chance: float = 0.5
 @export_range(2.0, 20.0, 1.0) var time_between_rolls: float = 8.0
 
@@ -23,7 +25,7 @@ func _ready() -> void:
 func _timer_done():
 	var r = randf()
 	if(r <= task_start_chance):
-		print("yes")
+		#print("yes")
 		start_new_task()
 
 func _task_opened():
