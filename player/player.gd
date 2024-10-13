@@ -50,7 +50,6 @@ func x_input() -> void:
 	direction = Input.get_axis("movement_left", "movement_right")
 	if (is_zero_approx(direction)):
 		animation_player.play("idle")
-		#moving_sounds.stop()
 	else:
 		sprite.flip_h = (direction > 0)
 		animation_player.play("walk")

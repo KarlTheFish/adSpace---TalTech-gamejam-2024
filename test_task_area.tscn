@@ -6,11 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_2phtk"]
 radius = 16.0
 
-[node name="TaskArea" type="Area2D" node_paths=PackedStringArray("canvas_layer")]
+[node name="TaskArea" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_rbnv1")
-canvas_layer = NodePath("CanvasLayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2phtk")
@@ -20,3 +19,5 @@ shape = SubResource("CircleShape2D_2phtk")
 [node name="Icon" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(256, 184)
 texture = ExtResource("2_eeawl")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

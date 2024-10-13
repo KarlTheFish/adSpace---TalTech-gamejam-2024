@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgr8spaym6bx0"]
+[gd_scene load_steps=9 format=3 uid="uid://dgr8spaym6bx0"]
 
 [ext_resource type="PackedScene" uid="uid://d0xoyhtribf5b" path="res://player/player.tscn" id="1_jw1bx"]
 [ext_resource type="Texture2D" uid="uid://bro0ikql6txj8" path="res://assets/starry sky.png" id="1_y8by2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6w112kvby67n" path="res://ads/advert_manager.tscn" id="6_5qjq5"]
 [ext_resource type="PackedScene" uid="uid://8cl6tip6w4hc" path="res://tasks/toilet/toilet_task.tscn" id="6_m14rm"]
 [ext_resource type="PackedScene" uid="uid://cydilo6c42vos" path="res://tasks/control-room/control_room_task.tscn" id="7_jld5r"]
+[ext_resource type="Script" path="res://tasks/task_manager.gd" id="8_k4mlg"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -37,3 +38,13 @@ advert_spawn_chance = 0.6
 
 [node name="ControlRoomTask" parent="." instance=ExtResource("7_jld5r")]
 position = Vector2(246, 108)
+
+[node name="TaskManager" type="Node2D" parent="." node_paths=PackedStringArray("GeneralTaskAudio", "ToiletTask", "ControlRoomTask")]
+position = Vector2(246, 108)
+script = ExtResource("8_k4mlg")
+GeneralTaskAudio = NodePath("GeneralTaskAudio")
+ToiletTask = NodePath("../ToiletTask")
+ControlRoomTask = NodePath("../ControlRoomTask")
+
+[node name="GeneralTaskAudio" type="AudioStreamPlayer2D" parent="TaskManager"]
+position = Vector2(-246, -108)
