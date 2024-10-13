@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlqvhx8nwx4so"]
+[gd_scene load_steps=7 format=3 uid="uid://dlqvhx8nwx4so"]
 
 [ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_l0fnj"]
 [ext_resource type="Script" path="res://classes/draggable_button.gd" id="2_rjxf8"]
 [ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/sprites/close-button-01.png" id="3_8gpk4"]
 [ext_resource type="Texture2D" uid="uid://d1whiwn8jy2vn" path="res://ads/sprites/ads/ad-premium-2.png" id="5_3uc18"]
 [ext_resource type="PackedScene" uid="uid://c6qxbov6xpppp" path="res://ads/ok_button.tscn" id="5_cr2lq"]
+[ext_resource type="AudioStream" uid="uid://b3ee1b3h6pw00" path="res://assets/audio/sick-of-the-ads.mp3" id="6_jkd5l"]
 
-[node name="PremiumAd2" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button", "ok_button")]
+[node name="PremiumAd2" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button", "ok_button", "sickOfTheAdsSound")]
 script = ExtResource("1_l0fnj")
 ad_window = NodePath("Window")
 close_button = NodePath("Window/CloseButton")
 ok_button = NodePath("Window/OkButton")
+sickOfTheAdsSound = NodePath("SickOfTheAds")
+soundChance = 0.5
 
 [node name="Window" type="TextureButton" parent="."]
 offset_right = 125.0
@@ -38,3 +41,6 @@ offset_left = 101.0
 offset_top = 120.0
 offset_right = 147.0
 offset_bottom = 130.0
+
+[node name="SickOfTheAds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jkd5l")
