@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgr8spaym6bx0"]
+[gd_scene load_steps=10 format=3 uid="uid://dgr8spaym6bx0"]
 
 [ext_resource type="PackedScene" uid="uid://d0xoyhtribf5b" path="res://player/player.tscn" id="1_jw1bx"]
 [ext_resource type="Texture2D" uid="uid://bro0ikql6txj8" path="res://assets/starry sky.png" id="1_y8by2"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b6w112kvby67n" path="res://ads/advert_manager.tscn" id="6_5qjq5"]
 [ext_resource type="PackedScene" uid="uid://8cl6tip6w4hc" path="res://tasks/toilet/toilet_task.tscn" id="6_m14rm"]
 [ext_resource type="PackedScene" uid="uid://cydilo6c42vos" path="res://tasks/control-room/control_room_task.tscn" id="7_jld5r"]
-[ext_resource type="Script" path="res://tasks/task_manager.gd" id="8_k4mlg"]
+[ext_resource type="PackedScene" uid="uid://bt3yqwifdni6a" path="res://tasks/task_manager.tscn" id="8_2n5g4"]
+[ext_resource type="Texture2D" uid="uid://cwwp4hwna8teo" path="res://assets/ohumark.png" id="9_it5qk"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -30,7 +31,9 @@ position = Vector2(160, 120)
 zoom = Vector2(2, 2)
 
 [node name="ToiletTask" parent="." instance=ExtResource("6_m14rm")]
+z_index = 3
 position = Vector2(48, 168)
+collision_layer = 8
 
 [node name="AdvertManager" parent="." instance=ExtResource("6_5qjq5")]
 time_between_ads = 10.0
@@ -39,12 +42,29 @@ advert_spawn_chance = 0.6
 [node name="ControlRoomTask" parent="." instance=ExtResource("7_jld5r")]
 position = Vector2(246, 108)
 
-[node name="TaskManager" type="Node2D" parent="." node_paths=PackedStringArray("GeneralTaskAudio", "ToiletTask", "ControlRoomTask")]
-position = Vector2(246, 108)
-script = ExtResource("8_k4mlg")
-GeneralTaskAudio = NodePath("GeneralTaskAudio")
-ToiletTask = NodePath("../ToiletTask")
-ControlRoomTask = NodePath("../ControlRoomTask")
+[node name="TaskManager" parent="." node_paths=PackedStringArray("TaskMarker1", "TaskMarker2", "TaskMarker3", "TaskMarker4", "AlertSprite", "TaskCheckTimer") instance=ExtResource("8_2n5g4")]
+TaskMarker1 = NodePath("EngineTaskMarker")
+TaskMarker2 = NodePath("CockpitTaskMarker")
+TaskMarker3 = NodePath("ToiletTaskMarker")
+TaskMarker4 = NodePath("BedTaskMarker")
+AlertSprite = NodePath("AlertSprite")
+TaskCheckTimer = NodePath("Task_Appear_Timer")
+TaskChance = 0.5
 
-[node name="GeneralTaskAudio" type="AudioStreamPlayer2D" parent="TaskManager"]
-position = Vector2(-246, -108)
+[node name="CockpitTaskMarker" type="Marker2D" parent="TaskManager"]
+
+[node name="EngineTaskMarker" type="Marker2D" parent="TaskManager"]
+position = Vector2(-159, 5)
+
+[node name="ToiletTaskMarker" type="Marker2D" parent="TaskManager"]
+position = Vector2(-199, 61)
+
+[node name="BedTaskMarker" type="Marker2D" parent="TaskManager"]
+position = Vector2(-6, 47)
+
+[node name="AlertSprite" type="Sprite2D" parent="TaskManager"]
+position = Vector2(3, 57)
+texture = ExtResource("9_it5qk")
+
+[node name="Task_Appear_Timer" type="Timer" parent="TaskManager"]
+wait_time = 10.0

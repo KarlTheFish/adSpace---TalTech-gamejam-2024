@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt3yqwifdni6a"]
+
+[ext_resource type="Script" path="res://tasks/task_manager.gd" id="1_jrbxr"]
+
+[node name="TaskManager" type="Node2D" node_paths=PackedStringArray("GeneralTaskAudio", "ToiletTask", "ControlRoomTask")]
+position = Vector2(246, 108)
+script = ExtResource("1_jrbxr")
+GeneralTaskAudio = NodePath("GeneralTaskAudio")
+ToiletTask = NodePath("")
+ControlRoomTask = NodePath("")
+
+[node name="GeneralTaskAudio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-246, -108)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://8cl6tip6w4hc"]
+[gd_scene load_steps=8 format=3 uid="uid://8cl6tip6w4hc"]
 
 [ext_resource type="Script" path="res://tasks/toilet/toilet_task.gd" id="1_g4fcq"]
 [ext_resource type="Texture2D" uid="uid://d1inc26mk737l" path="res://tasks/toilet/sprites/WC.png" id="2_frk71"]
 [ext_resource type="Texture2D" uid="uid://csl8mahnkjamv" path="res://tasks/toilet/sprites/hari.png" id="3_8isqe"]
 [ext_resource type="Script" path="res://classes/draggable_button.gd" id="4_0w2oc"]
+[ext_resource type="AudioStream" uid="uid://dlfjaxusfw3no" path="res://assets/audio/toilet_cleaned.wav" id="5_ndri8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2ixv"]
 
@@ -11,9 +12,11 @@
 radius = 12.0
 height = 32.0
 
-[node name="ToiletTask" type="Area2D" node_paths=PackedStringArray("toilet_brush", "task_root")]
+[node name="ToiletTask" type="Area2D" node_paths=PackedStringArray("toilet_brush", "toilet_cleaned_sound", "poop_sound", "task_root")]
 script = ExtResource("1_g4fcq")
 toilet_brush = NodePath("TaskRoot/Background/Brush")
+toilet_cleaned_sound = NodePath("PoopCleanedSound")
+poop_sound = NodePath("ToiletBrushSound")
 task_root = NodePath("TaskRoot")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -43,3 +46,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TaskRoot/Background/Brush/Area2D"]
 rotation = 0.872665
 shape = SubResource("CapsuleShape2D_3d2ds")
+
+[node name="PoopCleanedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ndri8")
+
+[node name="ToiletBrushSound" type="AudioStreamPlayer2D" parent="."]
