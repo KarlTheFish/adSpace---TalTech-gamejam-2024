@@ -25,8 +25,8 @@ color = Color(0.0862745, 1, 0, 1)
 color_ramp = SubResource("GradientTexture1D_64vrs")
 
 [node name="ToiletPoop" type="Area2D" node_paths=PackedStringArray("sprite", "collision_shape", "particles")]
-collision_layer = 16
-collision_mask = 8
+collision_layer = 64
+collision_mask = 32
 script = ExtResource("1_b0hmu")
 sprite = NodePath("Sprite2D")
 collision_shape = NodePath("CollisionShape2D")

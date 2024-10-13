@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1q612dxuqhlo"
-path="res://.godot/imported/Ad2.png-cf9bd14c3d3c594c02a1875d05da21fc.ctex"
+uid="uid://cn04d6n4fbieu"
+path="res://.godot/imported/ad-singles.png-d26b17d07a15dca4530ba5f5ff6a81ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ad boxes/Ad2.png"
-dest_files=["res://.godot/imported/Ad2.png-cf9bd14c3d3c594c02a1875d05da21fc.ctex"]
+source_file="res://ads/sprites/ads/ad-singles.png"
+dest_files=["res://.godot/imported/ad-singles.png-d26b17d07a15dca4530ba5f5ff6a81ac.ctex"]
 
 [params]
 

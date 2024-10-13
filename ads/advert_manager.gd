@@ -20,6 +20,7 @@ const ADVERT_SCENES: Array[PackedScene] = [
 	preload("res://ads/ads/premium_ad_3.tscn"),
 	preload("res://ads/ads/rocket_ad.tscn"),
 	preload("res://ads/ads/therapy_ad.tscn"),
+	preload("res://ads/ads/singles_ad.tscn"),
 ]
 
 var advert_amount: int = 0

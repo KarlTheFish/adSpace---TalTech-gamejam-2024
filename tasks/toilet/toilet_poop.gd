@@ -11,7 +11,6 @@ const TEXTURES: Array[CompressedTexture2D] = [
 	preload("res://tasks/toilet/sprites/kaka4.png") as CompressedTexture2D,
 ]
 
-
 const MAX_HEALTH: int = 100
 var health: int = MAX_HEALTH
 
@@ -21,11 +20,11 @@ func _ready() -> void:
 	collision_shape.shape.size = texture.get_size()
 	
 func _physics_process(delta: float) -> void:
-	particles.emitting = false
 	if (has_overlapping_areas()):
-		print("tra")
 		particles.emitting = true
 		health -= 1
 		modulate.a = max(0.2, float(health) / float(MAX_HEALTH))
 		if (health == 0):
 			queue_free()
+	else:
+		particles.emitting = false

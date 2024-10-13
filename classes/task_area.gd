@@ -1,5 +1,6 @@
 class_name TaskArea extends Area2D
 
+@export var task_name: String = ""
 @export var task_root: Node2D
 
 var tween: Tween
@@ -7,7 +8,8 @@ var task_open: bool = false
 var player_colliding: bool = false
 const TASK_INITIAL_OFFSET: Vector2 = Vector2(0, 720)
 
-var task_complete: bool = false
+# TODO change to true-false from task-manager
+var task_complete: bool = true
 
 func _enter_tree() -> void:
 	set_collision_mask_value(2, true)

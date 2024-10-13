@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://1py8q5tamxex"]
+
+[ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_abs8y"]
+[ext_resource type="Texture2D" uid="uid://cn04d6n4fbieu" path="res://ads/sprites/ads/ad-singles.png" id="2_6kcim"]
+[ext_resource type="Script" path="res://classes/draggable_button.gd" id="3_ganpb"]
+[ext_resource type="Texture2D" uid="uid://cphxs8b3rkn1s" path="res://ads/sprites/close-button-01.png" id="4_00uf2"]
+[ext_resource type="PackedScene" uid="uid://c6qxbov6xpppp" path="res://ads/ok_button.tscn" id="5_mcwhq"]
+
+[node name="SinglesAd" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button", "ok_button")]
+script = ExtResource("1_abs8y")
+ad_window = NodePath("DraggableButton")
+close_button = NodePath("DraggableButton/CloseButton")
+ok_button = NodePath("DraggableButton/OkButton")
+
+[node name="DraggableButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_6kcim")
+script = ExtResource("3_ganpb")
+
+[node name="CloseButton" type="TextureButton" parent="DraggableButton"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = -4.0
+offset_right = 125.0
+offset_bottom = 6.0
+texture_normal = ExtResource("4_00uf2")
+
+[node name="OkButton" parent="DraggableButton" instance=ExtResource("5_mcwhq")]
+offset_left = -12.0
+offset_top = -5.0
+offset_right = 34.0
+offset_bottom = 5.0

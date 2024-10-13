@@ -1,7 +1,5 @@
 class_name DraggableButton extends TextureButton
 
-@export var ToiletBrushArea:Area2D
-
 var dragging: bool = false
 var mouse_offset: Vector2 = Vector2.ZERO
 

@@ -8,16 +8,19 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvm4c"]
 radius = 16.0
 
-[node name="ControlRoomTask" type="Area2D" node_paths=PackedStringArray("gun_sprite", "spawn_timer", "task_root")]
+[node name="ControlRoomTask" type="Area2D" node_paths=PackedStringArray("gun_sprite", "spawn_timer", "counter", "task_root")]
 script = ExtResource("1_kg171")
 gun_sprite = NodePath("TaskRoot/ControlPanel/Gun")
 spawn_timer = NodePath("TaskRoot/SpawnTimer")
+counter = NodePath("TaskRoot/ControlPanel/Counter")
+task_name = "control"
 task_root = NodePath("TaskRoot")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pvm4c")
 
 [node name="TaskRoot" type="Node2D" parent="."]
+visible = false
 
 [node name="Background" type="Sprite2D" parent="TaskRoot"]
 texture = ExtResource("2_8emy6")
@@ -28,6 +31,17 @@ z_index = 2
 position = Vector2(160, 189)
 texture = ExtResource("3_fs6sd")
 
+[node name="Counter" type="Label" parent="TaskRoot/ControlPanel"]
+modulate = Color(0.354167, 0.85, 0, 1)
+offset_left = -34.0
+offset_top = 11.0
+offset_right = 34.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Gun" type="Sprite2D" parent="TaskRoot/ControlPanel"]
 z_index = -1
 position = Vector2(0, -60)
@@ -36,4 +50,5 @@ hframes = 5
 frame = 1
 
 [node name="SpawnTimer" type="Timer" parent="TaskRoot"]
+wait_time = 2.5
 one_shot = true

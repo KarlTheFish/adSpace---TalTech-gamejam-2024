@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5jl8p5pphrfy"
-path="res://.godot/imported/Ad1base.png-f29684ef8f16d651c30c023464883371.ctex"
+uid="uid://dkx3o7srypd3w"
+path="res://.godot/imported/base-button.png-7ea7eb66ac1019d26f18c96ec0be021f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ad boxes/Ad1base.png"
-dest_files=["res://.godot/imported/Ad1base.png-f29684ef8f16d651c30c023464883371.ctex"]
+source_file="res://tasks/engine-room/sprites/base-button.png"
+dest_files=["res://.godot/imported/base-button.png-7ea7eb66ac1019d26f18c96ec0be021f.ctex"]
 
 [params]
 

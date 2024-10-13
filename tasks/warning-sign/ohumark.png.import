@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c65288yubnan2"
-path="res://.godot/imported/Sprite-0001.png-c1c268a2ec3a64aba686d8cb00610e24.ctex"
+uid="uid://cwwp4hwna8teo"
+path="res://.godot/imported/ohumark.png-4a405f4bef9b2185046c72d6a89976af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ad boxes/Sprite-0001.png"
-dest_files=["res://.godot/imported/Sprite-0001.png-c1c268a2ec3a64aba686d8cb00610e24.ctex"]
+source_file="res://tasks/warning-sign/ohumark.png"
+dest_files=["res://.godot/imported/ohumark.png-4a405f4bef9b2185046c72d6a89976af.ctex"]
 
 [params]
 

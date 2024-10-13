@@ -3,9 +3,6 @@ class_name BaseAdvertisement extends Node2D
 @export var ad_window: DraggableButton
 @export var close_button: TextureButton
 @export var ok_button: TextureButton
-@export var sickOfTheAdsSound: AudioStreamPlayer2D
-
-@export var soundChance: float
 
 var tween: Tween
 
@@ -45,10 +42,6 @@ func _ready() -> void:
 			signi(corner % 3) * ad_size.x - (ok_size.x / 2),
 			int(corner >= 2) * ad_size.y - (ok_size.y / 2)
 		)
-		
-		var r = randf()
-		if(r <= soundChance):
-			sickOfTheAdsSound.play(0)
 
 func _advertisement_closed() -> void:
 	tween.kill()

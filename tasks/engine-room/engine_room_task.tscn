@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxqnnmy1aqmcp"]
+
+[ext_resource type="Script" path="res://tasks/engine-room/engine_room_task.gd" id="1_qw6p4"]
+[ext_resource type="Texture2D" uid="uid://b21dcnbsms7bn" path="res://tasks/engine-room/sprites/engine.png" id="2_xqj0j"]
+[ext_resource type="PackedScene" uid="uid://chqd2uwwhb80r" path="res://tasks/engine-room/engine_room_button.tscn" id="3_2mo7t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m12n6"]
+
+[node name="EngineRoomTask" type="Area2D" node_paths=PackedStringArray("label", "buttons_parent", "task_root")]
+collision_mask = 2
+script = ExtResource("1_qw6p4")
+label = NodePath("TaskRoot/Label")
+buttons_parent = NodePath("TaskRoot/Buttons")
+task_name = "engine"
+task_root = NodePath("TaskRoot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m12n6")
+
+[node name="TaskRoot" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="TaskRoot"]
+texture = ExtResource("2_xqj0j")
+centered = false
+
+[node name="Label" type="Label" parent="TaskRoot"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 141.0
+offset_top = 124.0
+offset_right = 240.0
+offset_bottom = 149.0
+text = "⬜◯△╳"
+horizontal_alignment = 1
+
+[node name="Buttons" type="Node2D" parent="TaskRoot"]
+
+[node name="Button1" parent="TaskRoot/Buttons" instance=ExtResource("3_2mo7t")]
+offset_left = 126.0
+offset_top = 151.0
+offset_right = 152.0
+offset_bottom = 176.0
+
+[node name="Button2" parent="TaskRoot/Buttons" instance=ExtResource("3_2mo7t")]
+offset_left = 159.0
+offset_top = 151.0
+offset_right = 185.0
+offset_bottom = 176.0
+
+[node name="Button3" parent="TaskRoot/Buttons" instance=ExtResource("3_2mo7t")]
+offset_left = 191.0
+offset_top = 151.0
+offset_right = 217.0
+offset_bottom = 176.0
+
+[node name="Button4" parent="TaskRoot/Buttons" instance=ExtResource("3_2mo7t")]
+offset_left = 223.0
+offset_top = 151.0
+offset_right = 249.0
+offset_bottom = 176.0

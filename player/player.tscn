@@ -1,8 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0xoyhtribf5b"]
+[gd_scene load_steps=23 format=3 uid="uid://d0xoyhtribf5b"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s2hpp"]
 [ext_resource type="Texture2D" uid="uid://bjs66yjc4rbfd" path="res://player/player-sheet.png" id="2_qsab5"]
+[ext_resource type="AudioStream" uid="uid://b2ykjcb8esa0t" path="res://assets/audio/steps/step1.wav" id="3_mwb06"]
 [ext_resource type="AudioStream" uid="uid://drlm55o40taup" path="res://assets/audio/ladder.wav" id="3_tyx5b"]
+[ext_resource type="AudioStream" uid="uid://bt55y3d1y4ddt" path="res://assets/audio/steps/step2.wav" id="4_pxu0g"]
+[ext_resource type="AudioStream" uid="uid://bh8aqphliq20c" path="res://assets/audio/steps/step11.wav" id="5_yiiad"]
+[ext_resource type="AudioStream" uid="uid://othsmo2xh3ee" path="res://assets/audio/steps/step12.wav" id="6_kjg0x"]
+[ext_resource type="AudioStream" uid="uid://m7514u2wagtu" path="res://assets/audio/steps/step13.wav" id="7_ud1uk"]
+[ext_resource type="AudioStream" uid="uid://dvtf0f1v6ck3i" path="res://assets/audio/steps/step3.wav" id="8_tgxkh"]
+[ext_resource type="AudioStream" uid="uid://b2s7as6h6auj2" path="res://assets/audio/steps/step4.wav" id="9_scsyj"]
+[ext_resource type="AudioStream" uid="uid://ovk7y88n6a5w" path="res://assets/audio/steps/step5.wav" id="10_glbgp"]
+[ext_resource type="AudioStream" uid="uid://bpt8kevmsno7a" path="res://assets/audio/steps/step6.wav" id="11_7wdip"]
+[ext_resource type="AudioStream" uid="uid://8yuovqr85dpm" path="res://assets/audio/steps/step7.wav" id="12_ppjbt"]
+[ext_resource type="AudioStream" uid="uid://c4fmsm8ahukdc" path="res://assets/audio/steps/step8.wav" id="13_iwonn"]
+[ext_resource type="AudioStream" uid="uid://3lksy21bt5im" path="res://assets/audio/steps/step9.wav" id="14_alb7s"]
+[ext_resource type="AudioStream" uid="uid://o41jswfugvwg" path="res://assets/audio/steps/step10.wav" id="15_nl5g8"]
 
 [sub_resource type="Animation" id="Animation_lioof"]
 length = 0.001
@@ -63,15 +76,31 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r3etu"]
 height = 36.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player", "moving_sounds", "ladder_sound")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yhhh4"]
+streams_count = 13
+stream_0/stream = ExtResource("3_mwb06")
+stream_1/stream = ExtResource("4_pxu0g")
+stream_2/stream = ExtResource("8_tgxkh")
+stream_3/stream = ExtResource("9_scsyj")
+stream_4/stream = ExtResource("10_glbgp")
+stream_5/stream = ExtResource("11_7wdip")
+stream_6/stream = ExtResource("12_ppjbt")
+stream_7/stream = ExtResource("13_iwonn")
+stream_8/stream = ExtResource("14_alb7s")
+stream_9/stream = ExtResource("15_nl5g8")
+stream_10/stream = ExtResource("5_yiiad")
+stream_11/stream = ExtResource("6_kjg0x")
+stream_12/stream = ExtResource("7_ud1uk")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player", "walking_sounds", "ladder_sound")]
 collision_layer = 2
 script = ExtResource("1_s2hpp")
 x_speed = 90.0
 gravity = 40.0
-climb_speed = -90.0
+climb_speed = -80.0
 sprite = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
-moving_sounds = NodePath("WalkingSounds")
+walking_sounds = NodePath("WalkingSounds")
 ladder_sound = NodePath("LadderSounds")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -88,6 +117,7 @@ texture = ExtResource("2_qsab5")
 hframes = 6
 
 [node name="WalkingSounds" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yhhh4")
 
 [node name="LadderSounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_tyx5b")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgr8spaym6bx0"]
+[gd_scene load_steps=13 format=3 uid="uid://dgr8spaym6bx0"]
 
 [ext_resource type="PackedScene" uid="uid://d0xoyhtribf5b" path="res://player/player.tscn" id="1_jw1bx"]
 [ext_resource type="Texture2D" uid="uid://bro0ikql6txj8" path="res://assets/starry sky.png" id="1_y8by2"]
@@ -8,63 +8,90 @@
 [ext_resource type="PackedScene" uid="uid://8cl6tip6w4hc" path="res://tasks/toilet/toilet_task.tscn" id="6_m14rm"]
 [ext_resource type="PackedScene" uid="uid://cydilo6c42vos" path="res://tasks/control-room/control_room_task.tscn" id="7_jld5r"]
 [ext_resource type="PackedScene" uid="uid://bt3yqwifdni6a" path="res://tasks/task_manager.tscn" id="8_2n5g4"]
-[ext_resource type="Texture2D" uid="uid://cwwp4hwna8teo" path="res://assets/ohumark.png" id="9_it5qk"]
+[ext_resource type="PackedScene" uid="uid://cxqnnmy1aqmcp" path="res://tasks/engine-room/engine_room_task.tscn" id="10_35qs4"]
+
+[sub_resource type="Animation" id="Animation_giobv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platformer/StarrySky:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(184, 216)]
+}
+
+[sub_resource type="Animation" id="Animation_237x6"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platformer/StarrySky:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(184, 216), Vector2(184, 232)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3501r"]
+_data = {
+"RESET": SubResource("Animation_giobv"),
+"idle": SubResource("Animation_237x6")
+}
 
 [node name="TestScene" type="Node2D"]
 
-[node name="StarrySky" type="Sprite2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3501r")
+}
+autoplay = "idle"
+
+[node name="Platformer" type="Node2D" parent="."]
+
+[node name="StarrySky" type="Sprite2D" parent="Platformer"]
 position = Vector2(184, 216)
 texture = ExtResource("1_y8by2")
 
-[node name="Ship" parent="." instance=ExtResource("2_fq5u1")]
+[node name="Ship" parent="Platformer" instance=ExtResource("2_fq5u1")]
 position = Vector2(160, 112)
 
-[node name="Player" parent="." instance=ExtResource("1_jw1bx")]
+[node name="Player" parent="Platformer" instance=ExtResource("1_jw1bx")]
 position = Vector2(264, 160)
 
-[node name="Ladder" parent="." instance=ExtResource("2_r0fx8")]
+[node name="Ladder" parent="Platformer" instance=ExtResource("2_r0fx8")]
 position = Vector2(328, 368)
 ladder_length = 5
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Platformer"]
 position = Vector2(160, 120)
 zoom = Vector2(2, 2)
+
+[node name="TaskManager" parent="." node_paths=PackedStringArray("tasks") instance=ExtResource("8_2n5g4")]
+tasks = [NodePath("../ToiletTask"), NodePath("../ControlRoomTask"), NodePath("../EngineRoomTask")]
+time_between_rolls = 4.0
 
 [node name="ToiletTask" parent="." instance=ExtResource("6_m14rm")]
 z_index = 3
 position = Vector2(48, 168)
 collision_layer = 8
 
-[node name="AdvertManager" parent="." instance=ExtResource("6_5qjq5")]
-time_between_ads = 10.0
-advert_spawn_chance = 0.6
-
 [node name="ControlRoomTask" parent="." instance=ExtResource("7_jld5r")]
 position = Vector2(246, 108)
 
-[node name="TaskManager" parent="." node_paths=PackedStringArray("TaskMarker1", "TaskMarker2", "TaskMarker3", "TaskMarker4", "AlertSprite", "TaskCheckTimer") instance=ExtResource("8_2n5g4")]
-TaskMarker1 = NodePath("EngineTaskMarker")
-TaskMarker2 = NodePath("CockpitTaskMarker")
-TaskMarker3 = NodePath("ToiletTaskMarker")
-TaskMarker4 = NodePath("BedTaskMarker")
-AlertSprite = NodePath("AlertSprite")
-TaskCheckTimer = NodePath("Task_Appear_Timer")
-TaskChance = 0.5
+[node name="EngineRoomTask" parent="." instance=ExtResource("10_35qs4")]
+position = Vector2(91, 113)
 
-[node name="CockpitTaskMarker" type="Marker2D" parent="TaskManager"]
-
-[node name="EngineTaskMarker" type="Marker2D" parent="TaskManager"]
-position = Vector2(-159, 5)
-
-[node name="ToiletTaskMarker" type="Marker2D" parent="TaskManager"]
-position = Vector2(-199, 61)
-
-[node name="BedTaskMarker" type="Marker2D" parent="TaskManager"]
-position = Vector2(-6, 47)
-
-[node name="AlertSprite" type="Sprite2D" parent="TaskManager"]
-position = Vector2(3, 57)
-texture = ExtResource("9_it5qk")
-
-[node name="Task_Appear_Timer" type="Timer" parent="TaskManager"]
-wait_time = 10.0
+[node name="AdvertManager" parent="." instance=ExtResource("6_5qjq5")]
+time_between_ads = 10.0
+advert_spawn_chance = 0.6

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://chqd2uwwhb80r"]
+
+[ext_resource type="Texture2D" uid="uid://dkx3o7srypd3w" path="res://tasks/engine-room/sprites/base-button.png" id="1_ct8s3"]
+[ext_resource type="Script" path="res://tasks/engine-room/engine_room_button.gd" id="2_ptbhm"]
+
+[node name="EngineRoomButton" type="TextureButton"]
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.026
+anchor_right = 0.02
+anchor_bottom = 0.026
+offset_left = -12.8
+offset_top = -12.48
+offset_right = 13.2
+offset_bottom = 12.52
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_ct8s3")
+script = ExtResource("2_ptbhm")
