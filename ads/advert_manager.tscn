@@ -1,13 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6w112kvby67n"]
+[gd_scene load_steps=3 format=3 uid="uid://b6w112kvby67n"]
 
 [ext_resource type="Script" path="res://ads/advert_manager.gd" id="1_pqkir"]
+[ext_resource type="AudioStream" uid="uid://bqfyk71r6sp0v" path="res://assets/audio/ad close.wav" id="2_rag85"]
 
-[node name="AdvertManager" type="Node2D" node_paths=PackedStringArray("ad_check_timer")]
+[node name="AdvertManager" type="Node2D" node_paths=PackedStringArray("ad_check_timer", "adClosingSound")]
 script = ExtResource("1_pqkir")
 time_between_ads = 4.0
 advert_spawn_chance = 0.7
 ad_check_timer = NodePath("Timer")
+adClosingSound = NodePath("AdClosingSound")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="AdClosingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_rag85")

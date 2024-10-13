@@ -5,6 +5,7 @@ extends Node2D
 ## Percent chance for ads to appear when timer times out.
 @export_range(0.0, 1.0, 0.1) var advert_spawn_chance: float = 0.5
 @export var ad_check_timer: Timer
+@export var adClosingSound: AudioStreamPlayer2D
 
 const ADVERT_LIMIT: int = 9
 const ADVERT_SCENES: Array[PackedScene] = [
@@ -41,6 +42,7 @@ func _timer_done():
 		create_ad()
 
 func ad_closed():
+	adClosingSound.play(0)
 	advert_amount -= 1
 
 func create_ad():
