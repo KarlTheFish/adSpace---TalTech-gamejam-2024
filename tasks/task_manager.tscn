@@ -1,14 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt3yqwifdni6a"]
+[gd_scene load_steps=3 format=3 uid="uid://bt3yqwifdni6a"]
 
 [ext_resource type="Script" path="res://tasks/task_manager.gd" id="1_jrbxr"]
+[ext_resource type="AudioStream" uid="uid://ckow2ic58mvvg" path="res://assets/audio/task_end2.ogg" id="2_wwco5"]
 
-[node name="TaskManager" type="Node2D" node_paths=PackedStringArray("audio", "task_timer")]
+[node name="TaskManager" type="Node2D" node_paths=PackedStringArray("general_audio", "win_audio", "task_timer")]
 script = ExtResource("1_jrbxr")
-audio = NodePath("GeneralTaskAudio")
+general_audio = NodePath("GeneralTaskAudio")
+win_audio = NodePath("TaskWinAudio")
 task_timer = NodePath("Timer")
 
 [node name="GeneralTaskAudio" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-246, -108)
+
+[node name="TaskWinAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wwco5")
+volume_db = -2.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 8.0

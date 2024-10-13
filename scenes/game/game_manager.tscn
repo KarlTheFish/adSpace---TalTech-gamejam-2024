@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://b465wsixbqkk0"]
+
+[ext_resource type="Script" path="res://scenes/game/game_manager.gd" id="1_ksnsx"]
+[ext_resource type="Texture2D" uid="uid://caxdgb33qd1hv" path="res://assets/bar-icons.png" id="2_w3y5o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odqkw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3qhu"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esxi5"]
+atlas = ExtResource("2_w3y5o")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s1dig"]
+bg_color = Color(0.135, 0.9, 0.19875, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ype3"]
+atlas = ExtResource("2_w3y5o")
+region = Rect2(16, 0, 16, 16)
+
+[node name="GameManager" type="CanvasLayer" node_paths=PackedStringArray("time_bar", "health_bar")]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("1_ksnsx")
+time_bar = NodePath("TimeProgressBar")
+health_bar = NodePath("HealthBar")
+
+[node name="TimeProgressBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_right = 0.2
+offset_left = 4.0
+offset_top = 4.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_odqkw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a3qhu")
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="TimeProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_esxi5")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.5
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_odqkw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s1dig")
+value = 100.0
+show_percentage = false
+
+[node name="TextureRect2" type="TextureRect" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -19.0
+offset_top = -4.0
+offset_right = -10.0
+offset_bottom = 10.0
+texture = SubResource("AtlasTexture_7ype3")

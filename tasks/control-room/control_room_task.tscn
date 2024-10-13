@@ -1,18 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://cydilo6c42vos"]
+[gd_scene load_steps=13 format=3 uid="uid://cydilo6c42vos"]
 
 [ext_resource type="Script" path="res://tasks/control-room/control_room_task.gd" id="1_kg171"]
-[ext_resource type="Texture2D" uid="uid://3eevpndjdjke" path="res://tasks/control-room/sprites/background.png" id="2_8emy6"]
+[ext_resource type="Texture2D" uid="uid://hb3f0r25m115" path="res://tasks/control-room/sprites/space-bg.png" id="2_k4b0q"]
+[ext_resource type="Shader" path="res://tasks/control-room/scroll.gdshader" id="3_8hucf"]
 [ext_resource type="Texture2D" uid="uid://wagojf4n7j4p" path="res://tasks/control-room/sprites/control-panel.png" id="3_fs6sd"]
 [ext_resource type="Texture2D" uid="uid://dkbcfvttdr40h" path="res://tasks/control-room/sprites/gun-sheet.png" id="3_kqs3b"]
+[ext_resource type="Texture2D" uid="uid://boc5a8cnep2xd" path="res://tasks/control-room/sprites/space-stars.png" id="4_gpwia"]
+[ext_resource type="AudioStream" uid="uid://ubmmamykml47" path="res://assets/audio/laser.ogg" id="5_s48yg"]
+[ext_resource type="FontFile" uid="uid://6tj5nr4a1yxb" path="res://fonts/jgs9.ttf" id="6_uwx6e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvm4c"]
 radius = 16.0
 
-[node name="ControlRoomTask" type="Area2D" node_paths=PackedStringArray("gun_sprite", "spawn_timer", "counter", "task_root")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxfof"]
+shader = ExtResource("3_8hucf")
+shader_parameter/scroll_speed = 0.0499999
+shader_parameter/DIRECTION = Vector2(0.8, 0.2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sq8hm"]
+font = ExtResource("6_uwx6e")
+font_size = 36
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hfwmn"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_s48yg")
+
+[node name="ControlRoomTask" type="Area2D" node_paths=PackedStringArray("gun_sprite", "spawn_timer", "counter", "audio", "task_root")]
 script = ExtResource("1_kg171")
 gun_sprite = NodePath("TaskRoot/ControlPanel/Gun")
 spawn_timer = NodePath("TaskRoot/SpawnTimer")
 counter = NodePath("TaskRoot/ControlPanel/Counter")
+audio = NodePath("TaskRoot/AudioStreamPlayer")
 task_name = "control"
 task_root = NodePath("TaskRoot")
 
@@ -23,7 +42,12 @@ shape = SubResource("CircleShape2D_pvm4c")
 visible = false
 
 [node name="Background" type="Sprite2D" parent="TaskRoot"]
-texture = ExtResource("2_8emy6")
+texture = ExtResource("2_k4b0q")
+centered = false
+
+[node name="Stars" type="Sprite2D" parent="TaskRoot"]
+material = SubResource("ShaderMaterial_rxfof")
+texture = ExtResource("4_gpwia")
 centered = false
 
 [node name="ControlPanel" type="Sprite2D" parent="TaskRoot"]
@@ -34,11 +58,12 @@ texture = ExtResource("3_fs6sd")
 [node name="Counter" type="Label" parent="TaskRoot/ControlPanel"]
 modulate = Color(0.354167, 0.85, 0, 1)
 offset_left = -34.0
-offset_top = 11.0
+offset_top = 2.0
 offset_right = 34.0
-offset_bottom = 40.0
+offset_bottom = 47.0
 theme_override_font_sizes/font_size = 20
 text = "0"
+label_settings = SubResource("LabelSettings_sq8hm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -52,3 +77,8 @@ frame = 1
 [node name="SpawnTimer" type="Timer" parent="TaskRoot"]
 wait_time = 2.5
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TaskRoot"]
+stream = SubResource("AudioStreamRandomizer_hfwmn")
+volume_db = -6.0
+max_polyphony = 10

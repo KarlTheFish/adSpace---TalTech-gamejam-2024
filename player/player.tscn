@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://d0xoyhtribf5b"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_s2hpp"]
-[ext_resource type="Texture2D" uid="uid://bjs66yjc4rbfd" path="res://player/player-sheet.png" id="2_qsab5"]
+[ext_resource type="Texture2D" uid="uid://80kq4vuoesu2" path="res://player/player-sheet-2.png" id="2_qrl1w"]
 [ext_resource type="AudioStream" uid="uid://b2ykjcb8esa0t" path="res://assets/audio/steps/step1.wav" id="3_mwb06"]
 [ext_resource type="AudioStream" uid="uid://drlm55o40taup" path="res://assets/audio/ladder.wav" id="3_tyx5b"]
 [ext_resource type="AudioStream" uid="uid://bt55y3d1y4ddt" path="res://assets/audio/steps/step2.wav" id="4_pxu0g"]
@@ -113,7 +113,7 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_r3etu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qsab5")
+texture = ExtResource("2_qrl1w")
 hframes = 6
 
 [node name="WalkingSounds" type="AudioStreamPlayer2D" parent="."]

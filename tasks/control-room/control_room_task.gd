@@ -3,6 +3,7 @@ extends TaskArea
 @export var gun_sprite: Sprite2D
 @export var spawn_timer: Timer
 @export var counter: Label
+@export var audio: AudioStreamPlayer
 
 const ASTEROIDS: Array[PackedScene] = [
 	preload("res://tasks/control-room/asteroid/asteroid_1.tscn"),
@@ -58,3 +59,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	bullet.position = GUN_POS
 	bullet.rotation_degrees = -90 + ((gun_sprite.frame - 2) * 30)
 	task_root.add_child(bullet)
+	audio.play()

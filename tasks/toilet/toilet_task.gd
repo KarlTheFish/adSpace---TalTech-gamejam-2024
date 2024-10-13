@@ -36,7 +36,9 @@ func restart_task() -> void:
 func _poop_wiped() -> void:
 	poop_amount -= 1
 	if (poop_amount == 0):
-		toilet_cleaned_audio.play(0)
+		if (not is_instance_valid(toilet_cleaned_audio)):
+			return
+		toilet_cleaned_audio.play()
 		EventBus.task_completed.emit(task_name)
 		task_complete = true
 		toggle_task_visibility()

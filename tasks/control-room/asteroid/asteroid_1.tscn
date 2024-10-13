@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://pndejk0a2ev7"]
+[gd_scene load_steps=6 format=3 uid="uid://pndejk0a2ev7"]
 
 [ext_resource type="Texture2D" uid="uid://bqus7tuh4rhjr" path="res://tasks/control-room/sprites/asteroid-1.png" id="1_267xi"]
 [ext_resource type="Script" path="res://tasks/control-room/asteroid/asteroid.gd" id="1_wet6s"]
+[ext_resource type="AudioStream" uid="uid://bnb585mqcwdti" path="res://assets/audio/explosion_asteroid.ogg" id="3_md027"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usxtk"]
 radius = 28.0
@@ -18,13 +19,14 @@ scale_min = 2.0
 scale_max = 6.0
 color = Color(1, 0.333333, 0.741176, 1)
 
-[node name="Asteroid1" type="Area2D" node_paths=PackedStringArray("sprite", "particles", "destruction_timer")]
+[node name="Asteroid1" type="Area2D" node_paths=PackedStringArray("sprite", "particles", "destruction_timer", "audio")]
 collision_layer = 8
 collision_mask = 16
 script = ExtResource("1_wet6s")
 sprite = NodePath("Sprite2D")
 particles = NodePath("GPUParticles2D")
 destruction_timer = NodePath("DestructionTimer")
+audio = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_usxtk")
@@ -41,5 +43,10 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="DestructionTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 1.1
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_md027")
+volume_db = -13.0
+max_polyphony = 5

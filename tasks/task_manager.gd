@@ -1,6 +1,7 @@
 extends Node2D
 
-@export var audio: AudioStreamPlayer2D
+@export var general_audio: AudioStreamPlayer2D
+@export var win_audio: AudioStreamPlayer
 @export var tasks: Array[TaskArea] = []
 @export var task_timer: Timer
 
@@ -9,7 +10,8 @@ extends Node2D
 
 const GENERAL_TASK_SOUNDS: Array [AudioStreamOggVorbis] = [
 	preload("res://assets/audio/task_start.ogg"),
-	preload("res://assets/audio/task_end.ogg")
+	preload("res://assets/audio/task_end.ogg"),
+	preload("res://assets/audio/task_end2.ogg"),
 ]
 const WARNING_SIGN_SCENE: PackedScene = preload("res://tasks/warning-sign/warning_sign.tscn")
 
@@ -17,6 +19,7 @@ const WARNING_SIGN_SCENE: PackedScene = preload("res://tasks/warning-sign/warnin
 func _ready() -> void:
 	EventBus.task_opened.connect(_task_opened)
 	EventBus.task_closed.connect(_task_closed)
+	EventBus.task_completed.connect(_task_completed)
 	task_timer.timeout.connect(_timer_done)
 	task_timer.start(time_between_rolls)
 	
@@ -27,12 +30,15 @@ func _timer_done():
 		start_new_task()
 
 func _task_opened():
-	audio.set_stream(GENERAL_TASK_SOUNDS[0])
-	audio.play(0)
+	general_audio.set_stream(GENERAL_TASK_SOUNDS[0])
+	general_audio.play()
 	
 func _task_closed():
-	audio.set_stream(GENERAL_TASK_SOUNDS[1])
-	audio.play(0)
+	general_audio.set_stream(GENERAL_TASK_SOUNDS[1])
+	general_audio.play()
+
+func _task_completed(_name: String) -> void:
+	win_audio.play()
 
 func start_new_task() -> void:
 	# find available tasks

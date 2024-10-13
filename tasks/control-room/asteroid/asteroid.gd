@@ -5,6 +5,7 @@ signal destroyed
 @export var sprite: Sprite2D
 @export var particles: GPUParticles2D
 @export var destruction_timer: Timer
+@export var audio: AudioStreamPlayer
 
 var rotation_increment: int = randi_range(-4, 4)
 var speed: int = randi_range(25, 100)
@@ -25,7 +26,10 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _area_entered(area: Area2D) -> void:
+	# bullet
 	area.queue_free()
+	set_deferred("monitoring", false)
+	audio.play()
 	destroyed.emit()
 	sprite.hide()
 	particles.emitting = true

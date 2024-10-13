@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Taltech Jam Game"
-run/main_scene="res://ads/advert_manager.tscn"
+config/name="adSpace"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
@@ -23,6 +23,8 @@ EventBus="*res://classes/event_bus.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [dotnet]
 

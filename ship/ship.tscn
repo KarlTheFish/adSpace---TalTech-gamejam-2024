@@ -1,10 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc6tjmcux2r5g"]
+[gd_scene load_steps=6 format=3 uid="uid://bc6tjmcux2r5g"]
 
 [ext_resource type="Texture2D" uid="uid://dlloax35mvf22" path="res://ship/ship2.png" id="1_iwn87"]
 [ext_resource type="PackedScene" uid="uid://cl1fu7yb6ncbm" path="res://ladder/ladder.tscn" id="2_j715i"]
 
+[sub_resource type="Gradient" id="Gradient_junhu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tf5bl"]
+gradient = SubResource("Gradient_junhu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1exq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 35, 1)
+direction = Vector3(-1, 0, 0)
+spread = 20.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 8.0
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_tf5bl")
+
 [node name="Ship" type="StaticBody2D"]
 collision_mask = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-144, 17)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_s1exq")
+lifetime = 0.2
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_iwn87")

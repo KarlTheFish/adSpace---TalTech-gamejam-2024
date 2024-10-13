@@ -1,15 +1,15 @@
 extends TaskArea
 
-# ⬜ YELLOW
-# ◯ GREEN
-# △ BLUE
-# ╳ RED
+# A YELLOW
+# B GREEN
+# C BLUE
+# D RED
 
 const SYMBOLS: Array[String] = [
-	"⬜",
-	"◯",
-	"△",
-	"╳",
+	"A",
+	"B",
+	"C",
+	"D",
 ]
 
 @export var label: Label

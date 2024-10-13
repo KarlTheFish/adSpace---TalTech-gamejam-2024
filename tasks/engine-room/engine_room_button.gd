@@ -1,12 +1,14 @@
 class_name EngineRoomButton extends TextureButton
 
+@export var audio: AudioStreamPlayer
+
 signal symbol_sent(symbol: String)
 
 const COLORS: Dictionary = {
-	"⬜": Color.YELLOW,
-	"◯": Color.GREEN,
-	"△": Color.RED,
-	"╳": Color.BLUE,
+	"A": Color.GREEN,
+	"B": Color.YELLOW,
+	"C": Color.BLUE,
+	"D": Color.RED,
 }
 
 var symbol: String = "":
@@ -21,6 +23,7 @@ func _ready() -> void:
 
 func _button_down() -> void:
 	position.y += 3
+	audio.play()
 
 func _button_up() -> void:
 	position.y -= 3

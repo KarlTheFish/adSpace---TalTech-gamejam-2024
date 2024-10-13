@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvr7mh1jo5yeb"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_t201s"]
+[ext_resource type="AudioStream" uid="uid://dy1gf2r0uilpv" path="res://assets/music/song_intro.wav" id="2_6v7wq"]
+[ext_resource type="Texture2D" uid="uid://hb3f0r25m115" path="res://tasks/control-room/sprites/space-bg.png" id="2_trmwb"]
+[ext_resource type="Shader" path="res://tasks/control-room/scroll.gdshader" id="3_2d1vk"]
+[ext_resource type="AudioStream" uid="uid://ds5sky7ilx177" path="res://assets/audio/task_start.ogg" id="3_x0fmq"]
+[ext_resource type="Texture2D" uid="uid://boc5a8cnep2xd" path="res://tasks/control-room/sprites/space-stars.png" id="4_w7a4q"]
+[ext_resource type="Texture2D" uid="uid://cuprruulmnogl" path="res://assets/button1 menu.png" id="5_qa78e"]
+[ext_resource type="FontFile" uid="uid://6tj5nr4a1yxb" path="res://fonts/jgs9.ttf" id="8_hupyx"]
+[ext_resource type="Texture2D" uid="uid://ooatutkm3whe" path="res://assets/logo koos2 final.png" id="8_w6ber"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5hnc"]
+shader = ExtResource("3_2d1vk")
+shader_parameter/scroll_speed = 0.02
+shader_parameter/DIRECTION = Vector2(1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nsmgb"]
+font = ExtResource("8_hupyx")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "start_sound")]
+layout_mode = 3
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_t201s")
+play_button = NodePath("TextureButton")
+start_sound = NodePath("StartSound")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6v7wq")
+volume_db = -9.0
+autoplay = true
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x0fmq")
+max_polyphony = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+texture = ExtResource("2_trmwb")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_w5hnc")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+texture = ExtResource("4_w7a4q")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -24.0
+offset_right = 51.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_qa78e")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+label_settings = SubResource("LabelSettings_nsmgb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -63.5
+offset_right = 98.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_w6ber")
