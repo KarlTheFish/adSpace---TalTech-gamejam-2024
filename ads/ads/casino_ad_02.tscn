@@ -21,7 +21,6 @@ texture_normal = ExtResource("7_8wwcb")
 script = ExtResource("2_n1wa7")
 
 [node name="CloseButton" type="TextureButton" parent="Window"]
-self_modulate = Color(1, 1, 1, 0.545098)
 layout_mode = 0
 offset_left = 53.0
 offset_top = 108.0
@@ -31,6 +30,7 @@ scale = Vector2(1.04, 1.0581)
 texture_normal = ExtResource("4_28a54")
 
 [node name="OkButton" parent="Window" instance=ExtResource("5_2p8pw")]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 110.0
 offset_right = 51.0

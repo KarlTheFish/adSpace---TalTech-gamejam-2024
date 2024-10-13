@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsbxxqloda2tp"]
+[gd_scene load_steps=7 format=3 uid="uid://dsbxxqloda2tp"]
 
 [ext_resource type="Script" path="res://classes/base_advertisement.gd" id="1_bnus1"]
 [ext_resource type="Texture2D" uid="uid://h1ljb60myshd" path="res://ads/sprites/ads/ad-foreign.png" id="2_scwfa"]
 [ext_resource type="Script" path="res://classes/draggable_button.gd" id="3_81wub"]
 [ext_resource type="Texture2D" uid="uid://bj2kveip2424x" path="res://ads/sprites/close-button-12.png" id="4_pgrq6"]
+[ext_resource type="AudioStream" uid="uid://b6vy6wmvbho53" path="res://assets/audio/obnoxious-ad-music.mp3" id="5_frwe8"]
+[ext_resource type="Script" path="res://ads/ads/audio_stream_player_2d.gd" id="6_dnwp5"]
 
 [node name="ForeignAd" type="Node2D" node_paths=PackedStringArray("ad_window", "close_button")]
 script = ExtResource("1_bnus1")
@@ -23,3 +25,8 @@ offset_top = 69.0
 offset_right = 205.0
 offset_bottom = 81.0
 texture_normal = ExtResource("4_pgrq6")
+
+[node name="AnnoyingMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_frwe8")
+script = ExtResource("6_dnwp5")
+audioChance = 0.5
